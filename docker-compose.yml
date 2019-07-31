@@ -1,0 +1,19 @@
+#Docker Compose for Server Node
+version: "3.4"
+services:
+    rabbitserver:
+        image: "rabbitmq:3-management"
+        hostname: "rabbbitserver"
+        environment:
+            RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+            RABBITMQ_DEFAULT_VHOST: "/"
+        ports:
+            - "15672:15672"
+            - "5672:5672"
+        labels:
+            NAME: "rabbitmqserver"
+        volumes:
+            - "rabbitqueue:/var/lib/rabbitmq"
+        restart: always
+volumes:
+    rabbitqueue:
